@@ -11,8 +11,7 @@ OSv QCOW2 image that boots into application.
 
 ## Open Tasks
 
-1. Pick a target app. Requirements:
-- Java JVM-based
-- Popular in financial sector
-- Well-known
+1. 
+Input: {Nginx binary, conf file}
+Output: Nginx OSv qcow2 image
 
