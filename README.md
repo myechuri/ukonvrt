@@ -3,7 +3,7 @@ Tool to convert given application into unikernel image
 
 ## Input
 
-Application binary.
+Application binary (ELF 64-bit LSB executable, x86-64).
 
 ## Output
 
