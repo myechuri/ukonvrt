@@ -2,7 +2,7 @@
 
 # Check if input binary can be converted to an OSv qcow2 image.
 
-OSV_BASE=/osv-base/loader.o
+OSV_BASE=/osv-base/loader.elf
 
 # Adapted from
 # https://github.com/cloudius-systems/osv/blob/master/scripts/check-libcfunc-avail.sh

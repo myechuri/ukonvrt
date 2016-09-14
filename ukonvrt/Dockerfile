@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 # Get OSv base ELF
 RUN mkdir -p /osv-base
-COPY ./loader.o /osv-base/loader.o
+COPY ./loader.elf /osv-base/loader.elf
 
 # Get binutils for access to readelf
 RUN apt-get update && \
