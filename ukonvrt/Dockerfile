@@ -7,7 +7,9 @@ COPY ./loader.elf /osv-base/loader.elf
 # Get binutils for access to readelf
 RUN apt-get update && \
     apt-get install -y build-essential && \
-    apt-get install -y vim
+    apt-get install -y vim && \
+    apt-get install -y upx
+RUN upx -d /osv-base/loader.elf
 
 # Validate application for OSv
 RUN mkdir -p /osv-checks
