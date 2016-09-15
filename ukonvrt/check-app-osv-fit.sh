@@ -17,13 +17,20 @@ if [ "$FILE_TYPE" == " ELF 64-bit LSB executable" ]; then
     objdump -t $OSV_BASE > $DUMPFILE
     FUNCS=`objdump -T $APP | grep GLIBC|sed -e "s/.*GLIBC\(XX\)\?_[0-9.]* //"`
 
+    OSV_SUPPORT=1
     for i in $FUNCS; do
         grep -q " $i$" $DUMPFILE
         FOUND=$?
         if [ $FOUND != 0 ]; then
+            OSV_SUPPORT=0
             echo "$i not found"
         fi
     done
+    if [ $OSV_SUPPORT == 1 ]; then
+        echo "$APP can be converted to OSv unikernel unmodified."
+    else
+        echo "$APP cannot be converted to OSv unikernel because of missing support for symbols listed above."
+    fi
     rm $DUMPFILE
 
 else
