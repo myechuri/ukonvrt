@@ -4,7 +4,7 @@ set -ex
 
 # Create Capstanfile
 BASE=/osv
-mv $APP $APP.so
+APP_NAME=${APP##*/}
 cat > ${BASE}/Capstanfile << EOF
 base: cloudius/osv-base
 
@@ -14,14 +14,12 @@ base: cloudius/osv-base
 cmdline: /tools/hello.so
 
 #
-# The command to use to build the application.  In this example, we just use
-# make.
-#
-build: make
-
-#
 # List of files that are included in the generated image.
 #
 files:
-  /tools/$APP.so: $APP.so
+  /tools/$APP_NAME.so: $APP 
 EOF
+
+# run "capstan build" to generate OSv image
+cd ${BASE}
+/root/bin/capstan build

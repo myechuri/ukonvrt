@@ -2,7 +2,7 @@
 
 # Check if input binary can be converted to an OSv qcow2 image.
 
-OSV_BASE=/osv-base/loader.elf
+OSV_BASE=/osv/base/loader.elf
 
 FILE_TYPE=`file $APP | awk '{print $2}'`
 LINK_TYPE=`file $APP | awk -F[:,] '{print $5}'`
@@ -31,12 +31,15 @@ if [ "$FILE_TYPE" == "ELF" ]; then
     fi
     if [ $OSV_SUPPORT == 1 ]; then
         echo "$APP can be converted to OSv unikernel unmodified."
+        exit 0
     else
         echo "$APP cannot be converted to OSv unikernel because of missing support for symbols listed above."
+        exit 1
     fi
     rm $DUMPFILE
 
 else
     echo "$FILE_TYPE is currently unsupported"
+    exit 1
 fi
 
