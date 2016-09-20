@@ -10,7 +10,7 @@ APP_NAME=$(basename "$APP")
 APP_EXTENSION="${APP_NAME##*.}"
 APP_NAME="${APP_NAME%.*}"
 
-if [ $APP_EXTENSION == '' ]; then
+if [ $APP_EXTENSION == $APP_NAME ]; then
     BASE_IMG=osv-base
     CMDLINE=$APP
 elif [ $APP_EXTENSION == 'jar' ]; then
