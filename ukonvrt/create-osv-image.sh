@@ -1,11 +1,7 @@
 #!/bin/bash
 
-set -ex
-
 # Create Capstanfile
 BASE=/osv
-# APP_NAME=${APP##*/}
-
 APP_NAME=$(basename "$APP")
 APP_EXTENSION="${APP_NAME##*.}"
 APP_NAME="${APP_NAME%.*}"
@@ -21,6 +17,7 @@ else
     exit 1
 fi
 
+echo "Composing Capstanfile.."
 cat > ${BASE}/Capstanfile << EOF
 # OSv base image.
 base: cloudius/$BASE_IMG
@@ -35,4 +32,5 @@ EOF
 
 # run "capstan build" to generate OSv image
 cd ${BASE}
+echo "Building OSv image.."
 /root/bin/capstan build
