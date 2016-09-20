@@ -8,9 +8,9 @@
 
 ``docker run -v {path-to-app-executable-on-host}:/tmp/{app-name} -v {host-path-to-output-image-dir}:/root/.capstan/repository -e APP=/tmp/{app-name} ukonvrt``
 
-#### Example 1: [Hello world](https://github.com/myechuri/ukonvrt/helloworld/hello).
+#### Example 1: [Hello world](https://github.com/myechuri/ukonvrt/sample-apps/helloworld/hello).
 ```
-docker run -it -v $PWD/../helloworld/hello:/tmp/hello -v /tmp/my-images:/root/.capstan/repository --privileged -e APP=/tmp/hello ukonvrt
+docker run -it -v $PWD/../sample-apps/helloworld/hello:/tmp/hello -v /tmp/my-images:/root/.capstan/repository --privileged -e APP=/tmp/hello ukonvrt
 ```
 
 Output:
