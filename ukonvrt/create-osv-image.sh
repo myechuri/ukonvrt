@@ -34,3 +34,12 @@ EOF
 cd ${BASE}
 echo "Building OSv image.."
 /root/bin/capstan build
+
+# verify that osv.img exists
+OSV_IMAGE=/root/.capstan/repository/osv/osv.qemu
+if [ ! -f $OSV_IMAGE ]; then
+    echo "Build failed to generate $OSV_IMAGE"
+    exit 1
+fi
+OSV_IMAGE_SIZE=`ls -lah $OSV_IMAGE | awk -F " " {'print $5'}`
+echo "Application image size: $OSV_IMAGE_SIZE"
