@@ -1,17 +1,12 @@
 # ukonvrt
-Tool to convert given application into unikernel image
+Tool to convert given application into unikernel image.
 
 ## Input
 
-Application binary (ELF 64-bit LSB executable, x86-64).
+User Application. Supported application types:
+- binary (ELF 64-bit LSB executable, x86-64)
+- Java (.jar file)
 
 ## Output
 
-OSv QCOW2 image that boots into application.
-
-## Open Tasks
-
-1. 
-Input: {Nginx binary, conf file}
-Output: Nginx OSv qcow2 image
-
+Host local directory populated with QCOW2 image that boots into application.
