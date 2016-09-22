@@ -47,7 +47,7 @@ root@ubuntu:~# file $UKONVRT_OUT/osv/osv.qemu
 ```
 ## Supported Platforms
 
-Ukonvrt tested on Ubuntu 16.04. Pending port to other platforms. If you are interested in a different platform, please call it out in a GitHub issue. Thanks!
+Ukonvrt has been tested on Ubuntu 16.04. Pending port to other platforms. If you are interested in a different platform, please call it out in a GitHub issue. Thanks!
 
 ## Acknowledgements
 
