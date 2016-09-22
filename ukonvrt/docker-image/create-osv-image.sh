@@ -42,4 +42,4 @@ if [ ! -f $OSV_IMAGE ]; then
     exit 1
 fi
 OSV_IMAGE_SIZE=`ls -lah $OSV_IMAGE | awk -F " " {'print $5'}`
-echo "Application image size: $OSV_IMAGE_SIZE"
+echo "Application unikernel image size: $OSV_IMAGE_SIZE"

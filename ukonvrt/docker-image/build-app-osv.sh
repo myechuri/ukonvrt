@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Checking if app can be converted to OSv unikernel unmodified"
+echo "Checking if app can be converted to OSv unikernel unmodified.."
 /osv/checks/check-app-osv-fit.sh
 if [ $? -eq 1 ]; then
     echo "Aborting"

@@ -3,4 +3,11 @@
 : "${UKONVRT_APP?Please set env variable UKONVRT_APP to full path of application to convert to unikernel.}"
 : "${UKONVRT_OUT?Please set env variable UKONVRT_OUT to host local directory where application unikernel image will be saved.}"
 
-/usr/bin/docker run -it --net=host -v ${UKONVRT_APP}:${UKONVRT_APP} -v ${UKONVRT_OUT}:/root/.capstan/repository --privileged -e APP=${UKONVRT_APP} myechuri/ukonvrt
+# TODO: Check for KVM and Docker.
+echo "This tool depends on KVM and Docker."
+
+# Launch a privileged container with host networking to build application unikernel.
+# Privileged: required for container to spawn intermediate OSv qemu VM on the host during build.
+# Host networking: required for Capstan to check for remote images:
+# https://github.com/cloudius-systems/capstan/blob/1d300adeefd9750c4a0821847e57b1617bb70bfb/util/s3_repository.go#L179
+/usr/bin/docker run --net=host -v ${UKONVRT_APP}:${UKONVRT_APP} -v ${UKONVRT_OUT}:/root/.capstan/repository --privileged -e APP=${UKONVRT_APP} myechuri/ukonvrt

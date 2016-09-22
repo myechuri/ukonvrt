@@ -1,4 +1,5 @@
 FROM ubuntu:16.04
+MAINTAINER Madhuri Yechuri <cosmokramer@gmail.com>
 
 # Get OSv base ELF
 RUN mkdir -p /osv/base
