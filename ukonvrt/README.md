@@ -8,13 +8,13 @@
 
 #### Convert
 
-1. Set ``UKONVRT_OUT`` to host local directory.
+- Set ``UKONVRT_OUT`` to host local directory.
 
 ```
 # export UKONVRT_OUT=/my-images
 ```
 
-2. Call ``ukonvrt`` to convert your application to a unikernel image.
+- As root, run ``ukonvrt`` to convert your application to a unikernel image.
 
 ```
 # UKONVRT_APP=/my-apps/hello ukonvrt
