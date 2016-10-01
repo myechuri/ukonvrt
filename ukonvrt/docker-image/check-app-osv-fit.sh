@@ -38,7 +38,7 @@ if [ "$FILE_TYPE" == "ELF" ]; then
     fi
     rm $DUMPFILE
 
-elif [ "$FILE_TYPE" == "Zip" ]; then
+elif [[ "$FILE_TYPE" == "Zip" || "$FILE_TYPE" == "Java" ]]; then
     APP_NAME=$(basename "$APP")
     APP_EXTENSION="${APP_NAME##*.}"
     APP_NAME="${APP_NAME%.*}"
