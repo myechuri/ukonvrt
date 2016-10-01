@@ -11,6 +11,12 @@ Set ``UKONVRT_APP`` to your host directory containing ``hello.jar``.
 ```
 # file /my-apps/hello.jar
 /my-apps/hello.jar: Java archive data (JAR)
+
+# jar tvf /my-apps/hello.jar
+     0 Wed Aug 19 16:51:40 PDT 2015 META-INF/
+    90 Wed Aug 19 16:51:40 PDT 2015 META-INF/MANIFEST.MF
+   417 Wed Aug 19 16:51:16 PDT 2015 Hello.class
+# 
 ```
 
 ### Step 3
