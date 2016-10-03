@@ -3,14 +3,14 @@ Tool to convert given application into unikernel image.
 
 ## Input
 
-Ful path of a user application. 
+Full path of a user application. 
 
 Supported application types:
 - ELF binary (64-bit LSB executable, x86-64)
 - Java (JDK 7)
 - [Work In Progress] Node.js
 
-If you have an application type that is currently not supported, please file a GitHub issue. Thanks!
+If you have an application type that is currently not supported, please [file a GitHub issue](https://github.com/myechuri/ukonvrt/issues/new). Thanks!
 
 ## Output
 
