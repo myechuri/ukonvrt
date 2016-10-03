@@ -11,7 +11,7 @@ if [ $APP_EXTENSION == $APP_NAME ]; then
     CMDLINE=$APP
 elif [ $APP_EXTENSION == 'jar' ]; then
     BASE_IMG=osv-openjdk
-    CMDLINE="/java.so -cp $APP $JAVA_CMD"
+    CMDLINE="/java.so -cp $APP $UKONVRT_JAVA_MAIN"
 else
     echo "Unsupported Application format $APP_EXTENSION"
     exit 1
