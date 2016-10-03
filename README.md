@@ -18,13 +18,26 @@ Host local directory populated with application packaged as a unikernel image.
 
 ## Usage
 
+- [Get ukonvrt](wget https://raw.githubusercontent.com/myechuri/ukonvrt/support-java-cp/ukonvrt/ukonvrt). Add ``ukonvrt`` to your ``PATH``.
+
 ```
-root@ubuntu:~# export UKONVRT_OUT=/my-images/
+# which ukonvrt
+/root/ukonvrt/ukonvrt/ukonvrt
+```
 
-root@ubuntu:~# file /my-apps/hello
-/my-apps/hello: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=54d32b5a078a9ac4fe84088b6074ab5337187531, not stripped
+- Set ``UKONVRT_OUT`` to host local directory. This is the directory where application unikernel image will be saved to.
 
-root@ubuntu:~# UKONVRT_APP=/my-apps/hello ukonvrt
+```
+# export UKONVRT_OUT=/my-images
+```
+
+- As root, run ``ukonvrt`` to convert your application to a unikernel image.
+
+##### C/C++ App
+
+```
+# UKONVRT_APP=/my-apps/hello ukonvrt
+
 This tool depends on KVM and Docker.
 Checking if app can be converted to OSv unikernel unmodified..
 /my-apps/hello is of type: ELF, link type:  dynamically linked
@@ -34,17 +47,36 @@ Composing Capstanfile..
 Building OSv image..
 Building osv...
 Downloading cloudius/osv-base/index.yaml...
-154 B / 154 B  100.00 % 
+154 B / 154 B  100.00 %
 Downloading cloudius/osv-base/osv-base.qemu.gz...
-20.02 MB / 20.02 MB  100.00 % ss2s
+20.02 MB / 20.02 MB  100.00 % sss
 Uploading files...
 1 / 1  100.00 % Application unikernel image size: 28M
 
-root@ubuntu:~# ls $UKONVRT_OUT
-cloudius  osv
-root@ubuntu:~# file $UKONVRT_OUT/osv/osv.qemu 
-/my-images//osv/osv.qemu: QEMU QCOW Image (v2), 10737418240 bytes
 ```
+
+##### Java App
+
+```
+# UKONVRT_APP=/my-apps/hello.jar UKONVRT_JAVA_MAIN=Hello ukonvrt
+This tool depends on KVM and Docker.
+Checking if app can be converted to OSv unikernel unmodified..
+/my-apps/hello.jar is of type: Java, link type:
+/my-apps/hello.jar can be converted to OSv unikernel unmodified.
+Composing Capstanfile..
+Building OSv image..
+Building osv...
+Downloading cloudius/osv-openjdk/index.yaml...
+169 B / 169 B  100.00 %
+Downloading cloudius/osv-openjdk/osv-openjdk.qemu.gz...
+74.10 MB / 74.10 MB  100.00 % ss8s
+Uploading files...
+1 / 1  100.00 % Application unikernel image size: 95M
+
+# file $UKONVRT_OUT/osv/osv.qemu
+/my-images/osv/osv.qemu: QEMU QCOW Image (v2)
+```
+
 ## Supported Platforms
 
 Ukonvrt has been tested on Ubuntu 16.04. Pending port to other platforms. If you are interested in a different platform, please call it out in a GitHub issue. Thanks!
