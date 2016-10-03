@@ -6,8 +6,8 @@ Tool to convert given application into unikernel image.
 Ful path of a user application. 
 
 Supported application types:
-- binary (ELF 64-bit LSB executable, x86-64)
-- [Work In Progress] Java (.jar file)
+- ELF binary (64-bit LSB executable, x86-64)
+- Java (JDK 7)
 - [Work In Progress] Node.js
 
 If you have an application type that is currently not supported, please file a GitHub issue. Thanks!
