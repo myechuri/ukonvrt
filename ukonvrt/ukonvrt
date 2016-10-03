@@ -10,4 +10,4 @@ echo "This tool depends on KVM and Docker."
 # Privileged: required for container to spawn intermediate OSv qemu VM on the host during build.
 # Host networking: required for Capstan to check for remote images:
 # https://github.com/cloudius-systems/capstan/blob/1d300adeefd9750c4a0821847e57b1617bb70bfb/util/s3_repository.go#L179
-/usr/bin/docker run --net=host -v ${UKONVRT_APP}:${UKONVRT_APP} -v ${UKONVRT_OUT}:/root/.capstan/repository --privileged -e APP=${UKONVRT_APP} myechuri/ukonvrt
+/usr/bin/docker run --net=host -v ${UKONVRT_APP}:${UKONVRT_APP} -v ${UKONVRT_OUT}:/root/.capstan/repository --privileged -e APP=${UKONVRT_APP} -e UKONVRT_JAVA_MAIN=${UKONVRT_JAVA_MAIN} myechuri/ukonvrt
