@@ -18,12 +18,14 @@ Host local directory populated with application packaged as a unikernel image.
 
 ## Usage
 
-- [Get ukonvrt](wget https://raw.githubusercontent.com/myechuri/ukonvrt/support-java-cp/ukonvrt/ukonvrt). Add ``ukonvrt`` to your ``PATH``.
+- [Download ukonvrt](https://raw.githubusercontent.com/myechuri/ukonvrt/support-java-cp/ukonvrt/ukonvrt). Add ``ukonvrt`` to your ``PATH``.
 
 ```
 # which ukonvrt
 /root/ukonvrt/ukonvrt/ukonvrt
 ```
+
+- Prerequisites: Verify that [KVM](https://help.ubuntu.com/community/KVM/Installation) and [Docker](https://docs.docker.com/engine/installation/linux/ubuntulinux/) are installed on your host.
 
 - Set ``UKONVRT_OUT`` to host local directory. This is the directory where application unikernel image will be saved to.
 
@@ -34,6 +36,11 @@ Host local directory populated with application packaged as a unikernel image.
 - As root, run ``ukonvrt`` to convert your application to a unikernel image.
 
 ##### C/C++ App
+
+```
+# file /my-apps/hello
+/my-apps/hello: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=54d32b5a078a9ac4fe84088b6074ab5337187531, not stripped
+```
 
 ```
 # UKONVRT_APP=/my-apps/hello ukonvrt
@@ -56,6 +63,11 @@ Uploading files...
 ```
 
 ##### Java App
+
+```
+# file /my-apps/hello.jar 
+/my-apps/hello.jar: Java archive data (JAR)
+```
 
 ```
 # UKONVRT_APP=/my-apps/hello.jar UKONVRT_JAVA_MAIN=Hello ukonvrt
