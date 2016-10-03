@@ -18,7 +18,7 @@ Host local directory populated with application packaged as a unikernel image.
 
 ## Usage
 
-- [Download ukonvrt](https://raw.githubusercontent.com/myechuri/ukonvrt/support-java-cp/ukonvrt/ukonvrt). Add ``ukonvrt`` to your ``PATH``.
+- [Download ukonvrt](https://raw.githubusercontent.com/myechuri/ukonvrt/ukonvrt/ukonvrt). Add ``ukonvrt`` to your ``PATH``.
 
 ```
 # which ukonvrt
