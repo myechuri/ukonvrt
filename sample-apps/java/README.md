@@ -6,7 +6,7 @@ Download ``hello.jar`` to a host local directory.
 
 ### Step 2
 
-Set ``UKONVRT_APP`` to your host directory containing ``hello.jar``.
+Set ``UKONVRT_APP`` to fully qualified path for ``hello.jar`` on your host.
 
 ```
 # file /my-apps/hello.jar

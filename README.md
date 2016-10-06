@@ -89,6 +89,30 @@ Uploading files...
 /my-images/osv/osv.qemu: QEMU QCOW Image (v2)
 ```
 
+##### Nodejs App
+
+```
+# file /my-apps/hello.js
+/my-apps/hello.js: ASCII text
+```
+
+```
+# UKONVRT_APP=/my-apps/hello.js ./ukonvrt
+This tool depends on KVM and Docker.
+Checking if app can be converted to OSv unikernel unmodified..
+/my-apps/hello.js is of type: ASCII
+APP_NAME=hello, APP_EXTENSION=js
+/my-apps/hello.js can be converted to OSv unikernel unmodified.
+Composing Capstanfile..
+Building OSv image..
+Building osv...
+Uploading files...
+1 / 1  100.00 % Application unikernel image size: 38M
+
+# file $UKONVRT_OUT/osv/osv.qemu
+/my-images/osv/osv.qemu: QEMU QCOW Image (v2)
+```
+
 ## Supported Platforms
 
 Ukonvrt has been tested on Ubuntu 16.04. Pending port to other platforms. If you are interested in a different platform, please call it out in a GitHub issue. Thanks!

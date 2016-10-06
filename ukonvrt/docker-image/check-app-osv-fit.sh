@@ -6,7 +6,11 @@ OSV_BASE=/osv/base/loader.elf
 
 FILE_TYPE=`file $APP | awk '{print $2}'`
 LINK_TYPE=`file $APP | awk -F[:,] '{print $5}'`
-echo "$APP is of type: $FILE_TYPE, link type: $LINK_TYPE"
+APP_NAME=$(basename "$APP")
+APP_EXTENSION="${APP_NAME##*.}"
+APP_NAME="${APP_NAME%.*}"
+echo "$APP is of type: $FILE_TYPE"
+echo "APP_NAME=$APP_NAME, APP_EXTENSION=$APP_EXTENSION"
 
 if [ "$FILE_TYPE" == "ELF" ]; then
     # 64-bit System V ELF payload
@@ -39,9 +43,6 @@ if [ "$FILE_TYPE" == "ELF" ]; then
     rm $DUMPFILE
 
 elif [[ "$FILE_TYPE" == "Zip" || "$FILE_TYPE" == "Java" ]]; then
-    APP_NAME=$(basename "$APP")
-    APP_EXTENSION="${APP_NAME##*.}"
-    APP_NAME="${APP_NAME%.*}"
     if [[ $APP_NAME != $APP_EXTENSION && $APP_EXTENSION == 'jar' ]]; then
         if [ -n "$UKONVRT_JAVA_MAIN" ]; then
             echo "$APP can be converted to OSv unikernel unmodified."
@@ -54,6 +55,9 @@ elif [[ "$FILE_TYPE" == "Zip" || "$FILE_TYPE" == "Java" ]]; then
     echo "Please file a GitHub issue to add support:"
     echo "https://github.com/myechuri/ukonvrt/issues"
     exit 1
+elif [[ "$FILE_TYPE" == "ASCII" && $APP_NAME != $APP_EXTENSION && $APP_EXTENSION == 'js' ]]; then
+    echo "$APP can be converted to OSv unikernel unmodified."
+    exit 0
 else
     echo "$FILE_TYPE is currently unsupported"
     exit 1
