@@ -12,6 +12,9 @@ if [ $APP_EXTENSION == $APP_NAME ]; then
 elif [ $APP_EXTENSION == 'jar' ]; then
     BASE_IMG=osv-openjdk
     CMDLINE="/java.so -cp $APP $UKONVRT_JAVA_MAIN"
+elif [ $APP_EXTENSION == 'js' ]; then
+    BASE_IMG=osv-node
+    CMDLINE="/libnode.so $APP"
 else
     echo "Unsupported Application format $APP_EXTENSION"
     exit 1
