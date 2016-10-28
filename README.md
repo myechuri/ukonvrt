@@ -42,6 +42,7 @@ Host local directory populated with application packaged as a unikernel image.
 /my-apps/hello: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=54d32b5a078a9ac4fe84088b6074ab5337187531, not stripped
 ```
 
+As ``root`` user:
 ```
 # UKONVRT_APP=/my-apps/hello ukonvrt
 
@@ -69,6 +70,7 @@ Uploading files...
 /my-apps/hello.jar: Java archive data (JAR)
 ```
 
+As ``root`` user:
 ```
 # UKONVRT_APP=/my-apps/hello.jar UKONVRT_JAVA_MAIN=Hello ukonvrt
 This tool depends on KVM and Docker.

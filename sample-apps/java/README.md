@@ -21,7 +21,7 @@ Set ``UKONVRT_APP`` to your host directory containing ``hello.jar``.
 
 ### Step 3
 
-Run ``ukonvrt`` to build unikernel image.
+As ``root``, run ``ukonvrt`` to build unikernel image.
 
 ```
 # export UKONVRT_OUT=/my-images
