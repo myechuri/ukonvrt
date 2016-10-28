@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Validate root user.
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root." 1>&2
+   exit 1
+fi
+
 : "${UKONVRT_APP?Please set env variable UKONVRT_APP to full path of application to convert to unikernel.}"
 : "${UKONVRT_OUT?Please set env variable UKONVRT_OUT to host local directory where application unikernel image will be saved.}"
 
