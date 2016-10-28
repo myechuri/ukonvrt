@@ -6,8 +6,11 @@
 # TODO: Check for KVM and Docker.
 echo "This tool depends on KVM and Docker."
 
+# Set default target architecture to x86_64.
+ARCH="${ARCH:-x86_64}"
+
 # Launch a privileged container with host networking to build application unikernel.
 # Privileged: required for container to spawn intermediate OSv qemu VM on the host during build.
 # Host networking: required for Capstan to check for remote images:
 # https://github.com/cloudius-systems/capstan/blob/1d300adeefd9750c4a0821847e57b1617bb70bfb/util/s3_repository.go#L179
-/usr/bin/docker run --net=host -v ${UKONVRT_APP}:${UKONVRT_APP} -v ${UKONVRT_OUT}:/root/.capstan/repository --privileged -e APP=${UKONVRT_APP} -e UKONVRT_JAVA_MAIN=${UKONVRT_JAVA_MAIN} myechuri/ukonvrt
+/usr/bin/docker run --net=host -v ${UKONVRT_APP}:${UKONVRT_APP} -v ${UKONVRT_OUT}:/root/.capstan/repository --privileged -e APP=${UKONVRT_APP} -e UKONVRT_JAVA_MAIN=${UKONVRT_JAVA_MAIN} -e ARCH=${ARCH} myechuri/ukonvrt
