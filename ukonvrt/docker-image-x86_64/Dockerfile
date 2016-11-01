@@ -3,7 +3,7 @@ MAINTAINER Madhuri Yechuri <cosmokramer@gmail.com>
 
 # Get OSv base ELF
 RUN mkdir -p /osv/base
-COPY ./loader.elf /osv/base/loader.elf
+COPY ./loader-x86_64.elf /osv/base/loader.elf
 
 # Get binutils for access to readelf
 RUN apt-get update && \
