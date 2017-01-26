@@ -155,8 +155,15 @@ scripts/osv-version.sh: 4: scripts/osv-version.sh: git: not found
   CXX loader.cc
   ...
   ...
+  IMGEDIT build/release.aarch64/loader.img
+WARNING: Image format was not specified for 'build/release.aarch64/loader.img' and probing guessed raw.
+         Automatically detecting the format is dangerous for raw images, write operations on block 0 will be restricted.
+         Specify the 'raw' format explicitly to remove the restrictions.
+loader_size=10250704 zfs_start=10485760 zfs_size=10726932480 fs_size=10737418240
+Application unikernel image size: 9.8M
 
-
+# file /my-images/hello.img 
+/my-images/hello.img: data
 ```
 ## Supported Platforms
 
