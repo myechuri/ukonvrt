@@ -8,12 +8,17 @@ set -ex
 # TODO: Check for KVM and Docker.
 echo "This tool depends on KVM and Docker."
 
-# Set default target architecture to x86_64.
-ARCH="${ARCH:-x86_64}"
+# Determine target architecture for the application.
+APP_TARGET_ARCH=`file $UKONVRT_APP | awk -F[:,] '{print $3}' | tr -d '[:space:]'`
+if [ "$APP_TARGET_ARCH" == "x86-64" ] || [ "$APP_TARGET_ARCH" == "ARMaarch64" ]; then
+    ARCH=$APP_TARGET_ARCH
+else
+    echo "$APP_TARGET_ARCH is not yet supported. Please file an issue to add support."
+    exit 1
+fi
 
 # Launch a privileged container with host networking to build application unikernel.
 # Privileged: required for container to spawn intermediate OSv qemu VM on the host during build.
 # Host networking: required for Capstan to check for remote images:
 # https://github.com/cloudius-systems/capstan/blob/1d300adeefd9750c4a0821847e57b1617bb70bfb/util/s3_repository.go#L179
-# /usr/bin/docker run --net=host -v ${UKONVRT_APP}:${UKONVRT_APP} -v ${UKONVRT_OUT}:/root/.capstan/repository --privileged -e APP=${UKONVRT_APP} -e UKONVRT_JAVA_MAIN=${UKONVRT_JAVA_MAIN} -e ARCH=${ARCH} myechuri/ukonvrt
-/usr/bin/docker run --net=host -v ${UKONVRT_APP}:${UKONVRT_APP} -v ${UKONVRT_OUT}:/root/.capstan/repository --privileged -e APP=${UKONVRT_APP} -e UKONVRT_JAVA_MAIN=${UKONVRT_JAVA_MAIN} -e ARCH=${ARCH} myechuri/ukonvrt:aarch64
+/usr/bin/docker run --net=host -v ${UKONVRT_APP}:${UKONVRT_APP} -v ${UKONVRT_OUT}:/root/.capstan/repository --privileged -e APP=${UKONVRT_APP} -e UKONVRT_JAVA_MAIN=${UKONVRT_JAVA_MAIN} myechuri/ukonvrt:${APP_TARGET_ARCH}
