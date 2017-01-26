@@ -64,32 +64,31 @@ Uploading files...
 /my-images/cloudius/osv-base/osv-base.qemu: QEMU QCOW Image (v2), 10737418240 bytes
 ```
 
-##### Java App
-
-```
-# file /my-apps/hello.jar 
-/my-apps/hello.jar: Java archive data (JAR)
-```
+##### Example 2: Java App
 
 As ``root`` user:
 ```
-# UKONVRT_APP=/my-apps/hello.jar UKONVRT_JAVA_MAIN=Hello ukonvrt
+# # Set UKONVRT_ROOT to top-level of ukonvrt repo.
+# export UKONVRT_ROOT=/root/ukonvrt
+# # Application example 2: hello world JAR
+# file $UKONVRT_ROOT/sample-apps/x86-64/java/hello.jar 
+/root/ukonvrt/sample-apps/x86-64/java/hello.jar: Java archive data (JAR)
+# UKONVRT_APP=$UKONVRT_ROOT/sample-apps/x86-64/java/hello.jar UKONVRT_JAVA_MAIN=Hello UKONVRT_OUT=/my-images $UKONVRT_ROOT/ukonvrt/ukonvrt
 This tool depends on KVM and Docker.
 Checking if app can be converted to OSv unikernel unmodified..
-/my-apps/hello.jar is of type: Java, link type:
-/my-apps/hello.jar can be converted to OSv unikernel unmodified.
+/root/ukonvrt/sample-apps/x86-64/java/hello.jar is of type: Java, link type: 
+/root/ukonvrt/sample-apps/x86-64/java/hello.jar can be converted to OSv unikernel unmodified.
 Composing Capstanfile..
 Building OSv image..
 Building osv...
 Downloading cloudius/osv-openjdk/index.yaml...
-169 B / 169 B  100.00 %
+169 B / 169 B  100.00 % 
 Downloading cloudius/osv-openjdk/osv-openjdk.qemu.gz...
-74.10 MB / 74.10 MB  100.00 % ss8s
+74.10 MB / 74.10 MB  100.00 % ss5s
 Uploading files...
 1 / 1  100.00 % Application unikernel image size: 95M
-
-# file $UKONVRT_OUT/osv/osv.qemu
-/my-images/osv/osv.qemu: QEMU QCOW Image (v2)
+# file /my-images/osv/osv.qemu 
+/my-images/osv/osv.qemu: QEMU QCOW Image (v2), 10737418240 bytes
 ```
 
 ##### Nodejs App
