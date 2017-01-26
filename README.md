@@ -6,9 +6,14 @@ Tool to convert given application into unikernel image.
 Full path of a user application. 
 
 Supported application types:
-- ELF binary (64-bit LSB executable, x86-64)
+
+X86-64:
+- ELF binary (64-bit LSB executable)
 - Java (JDK 7)
-- [Work In Progress] Node.js
+- Node.js
+
+Aarch64:
+- ELF binary
 
 If you have an application type that is currently not supported, please [file a GitHub issue](https://github.com/myechuri/ukonvrt/issues/new). Thanks!
 
@@ -91,28 +96,28 @@ Uploading files...
 /my-images/osv/osv.qemu: QEMU QCOW Image (v2), 10737418240 bytes
 ```
 
-##### Nodejs App
+##### Example 3: Nodejs App
 
+As ``root`` user:
 ```
-# file /my-apps/hello.js
-/my-apps/hello.js: ASCII text
-```
-
-```
-# UKONVRT_APP=/my-apps/hello.js ./ukonvrt
+# # Set UKONVRT_ROOT to top-level of ukonvrt repo.
+# export UKONVRT_ROOT=/root/ukonvrt
+# # Application example 3: hello world Node.js
+# file $UKONVRT_ROOT/sample-apps/x86-64/nodejs/hello.js 
+/root/ukonvrt/sample-apps/x86-64/nodejs/hello.js: ASCII text
+# UKONVRT_APP=$UKONVRT_ROOT/sample-apps/x86-64/nodejs/hello.js UKONVRT_OUT=/my-images $UKONVRT_ROOT/ukonvrt/ukonvrt
 This tool depends on KVM and Docker.
 Checking if app can be converted to OSv unikernel unmodified..
-/my-apps/hello.js is of type: ASCII
+/root/ukonvrt/sample-apps/x86-64/nodejs/hello.js is of type: ASCII
 APP_NAME=hello, APP_EXTENSION=js
-/my-apps/hello.js can be converted to OSv unikernel unmodified.
+/root/ukonvrt/sample-apps/x86-64/nodejs/hello.js can be converted to OSv unikernel unmodified.
 Composing Capstanfile..
 Building OSv image..
 Building osv...
 Uploading files...
 1 / 1  100.00 % Application unikernel image size: 38M
-
-# file $UKONVRT_OUT/osv/osv.qemu
-/my-images/osv/osv.qemu: QEMU QCOW Image (v2)
+# file /my-images/osv/osv.qemu 
+/my-images/osv/osv.qemu: QEMU QCOW Image (v2), 10737418240 bytes
 ```
 
 ## Supported Platforms
