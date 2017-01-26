@@ -35,32 +35,33 @@ Host local directory populated with application packaged as a unikernel image.
 
 - As root, run ``ukonvrt`` to convert your application to a unikernel image.
 
-##### C/C++ App
+### X86-64 Applications
 
-```
-# file /my-apps/hello
-/my-apps/hello: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=54d32b5a078a9ac4fe84088b6074ab5337187531, not stripped
-```
+##### Example 1: C/C++ App
 
 As ``root`` user:
 ```
-# UKONVRT_APP=/my-apps/hello ukonvrt
-
-This tool depends on KVM and Docker.
+## Set UKONVRT_ROOT to top-level of ukonvrt repo.
+# export UKONVRT_ROOT=/root/ukonvrt
+## Application example 1: hello world C ELF built for x86-64
+# file $UKONVRT_ROOT/sample-apps/x86-64/c/helloworld/hello 
+/root/ukonvrt/sample-apps/x86-64/c/helloworld/hello: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=54d32b5a078a9ac4fe84088b6074ab5337187531, not stripped
+root@ubuntu:~/ukonvrt# UKONVRT_APP=$UKONVRT_ROOT/sample-apps/x86-64/c/helloworld/hello UKONVRT_OUT=/my-images $UKONVRT_ROOT/ukonvrt/ukonvrtThis tool depends on KVM and Docker.
 Checking if app can be converted to OSv unikernel unmodified..
-/my-apps/hello is of type: ELF, link type:  dynamically linked
+/root/ukonvrt/sample-apps/x86-64/c/helloworld/hello is of type: ELF, link type:  dynamically linked
 Checking if application GLIBC symbols are available from OSv..
-/my-apps/hello can be converted to OSv unikernel unmodified.
+/root/ukonvrt/sample-apps/x86-64/c/helloworld/hello can be converted to OSv unikernel unmodified.
 Composing Capstanfile..
 Building OSv image..
 Building osv...
 Downloading cloudius/osv-base/index.yaml...
-154 B / 154 B  100.00 %
+154 B / 154 B  100.00 % 
 Downloading cloudius/osv-base/osv-base.qemu.gz...
 20.02 MB / 20.02 MB  100.00 % sss
 Uploading files...
 1 / 1  100.00 % Application unikernel image size: 28M
-
+# file /my-images/cloudius/osv-base/osv-base.qemu 
+/my-images/cloudius/osv-base/osv-base.qemu: QEMU QCOW Image (v2), 10737418240 bytes
 ```
 
 ##### Java App
