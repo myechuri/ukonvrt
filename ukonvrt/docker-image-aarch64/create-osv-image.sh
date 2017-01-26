@@ -1,45 +1,16 @@
 #!/bin/bash
 
-# Create Capstanfile
-BASE=/osv
+# Append OSv build manifest to boot into user-specified application.
+echo "/tests/tst-hello.so: ${APP}" >> /root/osv/bootfs.manifest.skel
+
+cd /root/osv
+ARCH=aarch64 scripts/build
+
 APP_NAME=$(basename "$APP")
-APP_EXTENSION="${APP_NAME##*.}"
-APP_NAME="${APP_NAME%.*}"
+OSV_IMAGE="/root/.capstan/repository/${APP_NAME}.img"
+cp /root/osv/build/last/loader.img ${OSV_IMAGE}
 
-if [ $APP_EXTENSION == $APP_NAME ]; then
-    BASE_IMG=osv-base
-    CMDLINE=$APP
-elif [ $APP_EXTENSION == 'jar' ]; then
-    BASE_IMG=osv-openjdk
-    CMDLINE="/java.so -cp $APP $UKONVRT_JAVA_MAIN"
-else
-    echo "Unsupported Application format $APP_EXTENSION"
-    exit 1
-fi
-
-echo "Composing Capstanfile.."
-cat > ${BASE}/Capstanfile << EOF
-# OSv base image.
-base: cloudius/$BASE_IMG
-
-# The command line passed to OSv to start up the application.
-cmdline: $CMDLINE
-
-# List of files that are included in the generated image.
-files:
-  $APP: $APP 
-EOF
-
-# run "capstan build" to generate OSv image
-cd ${BASE}
-echo "Building OSv image.."
-/root/bin/capstan build
-
-# verify that osv.img exists
-OSV_IMAGE=/root/.capstan/repository/osv/osv.qemu
-if [ ! -f $OSV_IMAGE ]; then
-    echo "Build failed to generate $OSV_IMAGE"
-    exit 1
-fi
 OSV_IMAGE_SIZE=`ls -lah $OSV_IMAGE | awk -F " " {'print $5'}`
 echo "Application unikernel image size: $OSV_IMAGE_SIZE"
+
+exit 0
