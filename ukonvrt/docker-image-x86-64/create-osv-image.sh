@@ -14,7 +14,7 @@ elif [ $APP_EXTENSION == 'jar' ]; then
     CMDLINE="/java.so -cp $APP $UKONVRT_JAVA_MAIN"
 elif [ $APP_EXTENSION == 'js' ]; then
     BASE_IMG=osv-node
-    CMDLINE="/libnode.so $APP"
+    CMDLINE="/libnode.so --max-old-space-size=1000 --max-semi-space-size=512 --noconcurrent_sweeping $APP"
 else
     echo "Unsupported Application format $APP_EXTENSION"
     exit 1
